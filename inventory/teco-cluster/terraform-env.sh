@@ -1,11 +1,14 @@
 #!/bin/bash
-echo "Please enter TECO environment name"
-read  TECO_ENV_INPUT
-export TECO_ENV=$TECO_ENV_INPUT
+read  -p "Enter TECO environment name [paladev]: " TECO_ENV
+export TECO_ENV=${TECO_ENV:-paladev}
 
-echo "Please enter TECO customer name"
-read TECO_CUSTOMER_INPUT
-export TECO_CUSTOMER=$TECO_CUSTOMER_INPUT
+read  -p "Enter TECO customer name [teco4]: " TECO_CUSTOMER
+export TECO_CUSTOMER=${TECO_CUSTOMER:-teco4}
+
+read  -p "Enter TECO cluster name [ks-5]: " TECO_CLUSTER
+export TECO_CLUSTER=${TECO_CLUSTER:-ks-7}
+
 
 source  /home/cloud-user/openstack-paladev-rc.sh
 source  /home/cloud-user/openstack_setenv.sh
+
