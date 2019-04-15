@@ -5,7 +5,7 @@ export TECO_ENV=${TECO_ENV:-paladev}
 read  -p "Enter TECO customer name [teco4]: " TECO_CUSTOMER
 export TECO_CUSTOMER=${TECO_CUSTOMER:-teco4}
 
-read  -p "Enter TECO cluster name [ks-5]: " TECO_CLUSTER
+read  -p "Enter TECO cluster name [ks-7]: " TECO_CLUSTER
 export TECO_CLUSTER=${TECO_CLUSTER:-ks-7}
 
 
