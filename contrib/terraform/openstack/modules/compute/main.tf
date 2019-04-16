@@ -39,10 +39,33 @@ resource "openstack_networking_secgroup_v2" "k8s" {
   description = "${var.cluster_name} - Kubernetes"
 }
 
-resource "openstack_networking_secgroup_rule_v2" "k8s" {
+resource "openstack_networking_secgroup_rule_v2" "k8s-icmp" {
   direction = "ingress"
   ethertype = "IPv4"
-  remote_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
+  protocol = "icmp"
+  port_range_min = "0"
+  port_range_max = "0"
+  remote_ip_prefix = "0.0.0.0/0"
+  security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "k8s-ssh" {
+  direction = "ingress"
+  ethertype = "IPv4"
+  protocol = "tcp"
+  port_range_min = "22"
+  port_range_max = "22"
+  remote_ip_prefix = "0.0.0.0/0"
+  security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "k8s-etcd" {
+  direction = "ingress"
+  ethertype = "IPv4"
+  protocol = "tcp"
+  port_range_min = "2379"
+  port_range_max = "2379"
+  remote_ip_prefix = "0.0.0.0/0"
   security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
 }
 
