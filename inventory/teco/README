@@ -1,22 +1,23 @@
-1) source openstack variables in ~/
-
-source openstack-paladev-rc.sh
-source openstack_setenv.sh
+1) Init terraform for this dir
+./terraform-init.sh 
 
 2) source TECO environement specific variables
-cd <kubespray_dir>/inventory/teco-cluster
 source terraform-env.sh
 
-3) Edit kubespray.tf file in automation-config directory
+3) Edit kubespray.tf file 
+Create path and kubespray.tf configuration file for the cluster in automation-config directory
+Path should match to variable TECO_CLUSTER created by terrafor-env.sh
+For example, for cluster name ks-7, path is:
+automation-config-repo/resources/paladev/customer/teco4/kubernetes/cluster/ks-7/kubespray.tf
 
 4) Provision the cluster with terraform
  ./terraform-apply.sh
 
 If there is something wrong, delete the cluster with
-
 ./terraform-destroy.sh
 
-5) run ansible
+5) Edit configuration files in group_var dir and run ansible
+
 cd ../../
 ansible-playbook --become -i inventory/teco-cluster/hosts cluster.yml
 
