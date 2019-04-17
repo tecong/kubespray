@@ -1,10 +1,7 @@
-1) source openstack variables in ~/
-
-source openstack-paladev-rc.sh
-source openstack_setenv.sh
+1) init terraform 
+./terraform-init.sh
 
 2) source TECO environement specific variables
-cd <kubespray_dir>/inventory/teco-cluster
 source terraform-env.sh
 
 3) Edit kubespray.tf file in automation-config directory
