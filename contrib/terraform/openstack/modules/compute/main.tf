@@ -69,6 +69,16 @@ resource "openstack_networking_secgroup_rule_v2" "k8s-etcd" {
   security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
 }
 
+resource "openstack_networking_secgroup_rule_v2" "k8s-etcd-peer" {
+  direction = "ingress"
+  ethertype = "IPv4"
+  protocol = "tcp"
+  port_range_min = "2380"
+  port_range_max = "2380"
+  remote_ip_prefix = "0.0.0.0/0"
+  security_group_id = "${openstack_networking_secgroup_v2.k8s.id}"
+}
+
 resource "openstack_networking_secgroup_v2" "worker" {
   name        = "${var.cluster_name}-k8s-worker"
   description = "${var.cluster_name} - Kubernetes worker nodes"
