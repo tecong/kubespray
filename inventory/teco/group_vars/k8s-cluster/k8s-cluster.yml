@@ -138,7 +138,7 @@ nodelocaldns_ip: 169.254.25.10
 # Can be docker_dns, host_resolvconf or none
 resolvconf_mode: docker_dns
 # Deploy netchecker app to verify DNS resolve as an HTTP service
-deploy_netchecker: false
+deploy_netchecker: true
 # Ip address of the kubernetes skydns service
 skydns_server: "{{ kube_service_addresses|ipaddr('net')|ipaddr(3)|ipaddr('address') }}"
 skydns_server_secondary: "{{ kube_service_addresses|ipaddr('net')|ipaddr(4)|ipaddr('address') }}"
@@ -168,7 +168,7 @@ default_kubelet_config_dir: "{{ kube_config_dir }}/dynamic_kubelet_dir"
 dynamic_kubelet_configuration_dir: "{{ kubelet_config_dir | default(default_kubelet_config_dir) }}"
 
 # pod security policy (RBAC must be enabled either by having 'RBAC' in authorization_modes or kubeadm enabled)
-podsecuritypolicy_enabled: false
+podsecuritypolicy_enabled: true
 
 # Make a copy of kubeconfig on the host that runs Ansible in {{ inventory_dir }}/artifacts
 # kubeconfig_localhost: false
